@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>Dorado Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="loginModal" class="login-modal hidden">
+        <div class="login-container">
+            <h2>Login to Dorado Clothing</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+            </form>
+            <form id="signupForm" style="display: none;">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+                <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="welcome-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+            <h1>🌟 WELCOME TO DORADO STORE 🌟</h1>
+        </marquee>
+        <marquee behavior="scroll" direction="right" scrollamount="8">
+            <h2>Quality Fashion For Everyone</h2>
+        </marquee>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">Dorado Clothing store</div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#customer-services">Customer Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#profile"><i class="fas fa-user"></i></a></li>
+            <li><a href="#cart" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a></li>
+        </ul>
+    </nav>
+
+    <!-- Add Congratulations Modal -->
+    <div id="congratsModal" class="congrats-modal hidden">
+        <div class="congrats-container">
+            <i class="fas fa-check-circle"></i>
+            <h2>Congratulations!</h2>
+            <p>Item added to your cart successfully</p>
+            <div class="congrats-buttons">
+                <button id="continueShopping">Continue Shopping</button>
+                <button id="viewCart">View Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Thank You Modal -->
+    <div id="thankYouModal" class="thank-you-modal hidden">
+        <div class="thank-you-container">
+            <i class="fas fa-check-circle"></i>
+            <h2>Thank You for Your Purchase!</h2>
+            <p>Your order has been successfully placed.</p>
+            <div class="order-info">
+                <p>Order Total: <span id="orderTotal">0 frw</span></p>
+                <p>Order ID: <span id="orderId"></span></p>
+            </div>
+            <button id="closeThankYou" class="close-btn">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Update Cart Modal -->
+    <div id="cartModal" class="cart-modal hidden">
+        <div class="cart-container">
+            <div class="cart-header">
+                <i class="fas fa-shopping-bag"></i>
+                <h2>Your Shopping Cart</h2>
+                <p>Thanks for shopping with Dorado Store!</p>
+            </div>
+            <div class="cart-content">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartItems">
+                        <!-- Cart items will be added here -->
+                    </tbody>
+                </table>
+                <div class="cart-summary">
+                    <div class="total-section">
+                        <span>Total Amount:</span>
+                        <span id="cartTotal">0 frw</span>
+                    </div>
+                    <div class="cart-actions">
+                        <button id="continueShopping" class="continue-btn">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </button>
+                        <button id="checkoutBtn" class="checkout-btn">
+                            Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="products" id="products">
+        <h2>Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (5).jfif" alt="Classic T-Shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Classic T-Shirt</h3>
+                    <p>29.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (6).jfif" alt="Slim Fit Jeans">
+                </div>
+                <div class="product-info">
+                    <h3>Slim Fit Jeans</h3>
+                    <p>59.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (7).jfif" alt="Leather Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Leather Jacket</h3>
+                    <p>149.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (9).jfif" alt="Casual Hoodie">
+                </div>
+                <div class="product-info">
+                    <h3>Casual Hoodie</h3>
+                    <p>45.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (10).jfif" alt="Sport Sneakers">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Sneakers</h3>
+                    <p>89.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (11).jfif" alt="Formal Shirt">
+                </div>
+                <div class="product-info">
+                    <h3>Formal Shirt</h3>
+                    <p>69.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (12).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (13).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (14).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (15).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (16).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (17).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (18).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (19).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (20).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (21).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (22).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (23).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (24).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (25).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (26).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (27).jfif" alt="Winter Coat">
+                </div>
+                <div class="product-info">
+                    <h3>Winter Coat</h3>
+                    <p>129.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (13).jfif" alt="Sport Shorts">
+                </div>
+                <div class="product-info">
+                    <h3>Sport Shorts</h3>
+                    <p>34.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image protected-content">
+                    <img src="images/download (14).jfif" alt="Denim Jacket">
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket</h3>
+                    <p>79.99frw</p>
+                    <button class="buy-btn protected-content">Buy Now</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="customer-services" class="customer-services-section">
+        <div class="help-menu">
+            <h2>How Can We Help You Today?</h2>
+            <div class="help-grid">
+                <div class="help-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Delivery, Order or Return</h3>
+                    <button class="help-btn">Get Help</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Digital Services</h3>
+                    <button class="help-btn">Get Help</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Account & Security</h3>
+                    <button class="help-btn">Get Help</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Payment & Gift Cards</h3>
+                    <button class="help-btn">Get Help</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-bell"></i>
+                    <h3>Memberships & Subscriptions</h3>
+                    <button class="help-btn">Get Help</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Report Something Suspicious</h3>
+                    <button class="help-btn">Report</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-universal-access"></i>
+                    <h3>Accessibility</h3>
+                    <button class="help-btn">Learn More</button>
+                </div>
+                <div class="help-item">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Something Else</h3>
+                    <button class="help-btn">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile" class="profile-section hidden">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="images/olivier.jpg" alt="Store Owner">
+                </div>
+                <h2>CEO OF dorado Stores</h2>
+            </div>
+            <div class="contact-details">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <i class="fas fa-user"></i>
+                    <p>Owner: uwihanganye olivier</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>Phone: +250785301465</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: contact@doradoclothing.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <p>Address: room 3b chic, near downtown</p>
+                </div>
+                <div class="social-links">
+                    <a href="olivier uwihanganye"><i class="fab fa-facebook"></i></a>
+                    <a href="olivier uwihanganye"><i class="fab fa-instagram"></i></a>
+                    <a href="olivier uwihanganye"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Add Customer Reviews Section -->
+            <div class="customer-reviews">
+                <h3>Customer Reviews</h3>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Great quality products! Fast delivery."</p>
+                        <p class="reviewer">- John D.</p>
+                    </div>
+                </div>
+                <button id="addReviewBtn" class="review-btn">Write a Review</button>
+            </div>
+
+            <!-- Add Order Status Section -->
+            <div class="order-status">
+                <h3>Track Your Order</h3>
+                <form id="orderTrackForm">
+                    <input type="text" placeholder="Enter Order ID" required>
+                    <button type="submit">Track Order</button>
+                </form>
+                <div id="orderResult" class="order-result hidden">
+                    <h4>Order Status</h4>
+                    <div class="status-timeline">
+                        <div class="status-point active">
+                            <i class="fas fa-box"></i>
+                            <p>Order Placed</p>
+                        </div>
+                        <div class="status-point">
+                            <i class="fas fa-shipping-fast"></i>
+                            <p>In Transit</p>
+                        </div>
+                        <div class="status-point">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Delivered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send us a message</h3>
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-wrapper">
+            <h2>Contact Our Business</h2>
+            <div class="business-info">
+                <div class="info-item">
+                    <i class="fas fa-store"></i>
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p>Saturday: 10:00 AM - 4:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Phone</h3>
+                    <p>+250785301465</p>
+                    <p>+250785301466</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Room 3b chic</p>
+                    <p>Near downtown</p>
+                    <p>Kigali, Rwanda</p>
+                </div>
+            </div>
+            <form id="businessContactForm" class="business-contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="">Select Inquiry Type</option>
+                        <option value="order">Order Status</option>
+                        <option value="product">Product Information</option>
+                        <option value="wholesale">Wholesale Inquiry</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
